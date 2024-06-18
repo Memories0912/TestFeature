@@ -832,7 +832,7 @@ local function UIOpen()
                         end
                     else
                         for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-                            if v.Name == MobLevel1OrMobLevel2() and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("Quest").Visiblethen
+                            if v.Name == MobLevel1OrMobLevel2() and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("Quest").Visible then
                                 repeat task.wait()
                                     KillMonster(v.Name, true, CSF(Func_Farms["Auto Level"]) == "FALSE")
                                 until not v:FindFirstChild("Humanoid") or not v:FindFirstChild("HumanoidRootPart") or v.Humanoid.Health <= 0 or  CSF(Func_Farms["Auto Level"]) == "FALSE"
