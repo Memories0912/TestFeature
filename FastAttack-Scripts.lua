@@ -2,7 +2,7 @@
 local Func_Farms = {
     ["Auto Level"] = false,
     ["Auto Bone"] = false,
-    ["Auto Katakuri"] = false,
+    ["Auto Katakuri"] = false
 }
 local Func_Settings = {
     ["Fast Attack"] = {
@@ -11,8 +11,8 @@ local Func_Settings = {
     },
     ["Bring Radius"] = 250,
     ["Auto Ken"] = false,
-    ["Double Quest"] = false
-    ["Claim Quest Cake And Haunted"] = false,
+    ["Double Quest"] = false,
+    ["Claim Quest Cake And Haunted"] = false
 }
 local Func_Items = {
     ["Auto Saber"] = false
