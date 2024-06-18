@@ -606,7 +606,7 @@ spawn(function()
         end
     end
 end)
-local PlayerBlacklist = 0
+local table_PlayerBlacklist = {}
 spawn(function()
     while task.wait() do
         if CheckStatusFeature(getgenv().KillPlayerQuest) == "TRUE" then
@@ -621,10 +621,10 @@ spawn(function()
                             if v.Name == PlayerFound and v.Character.Humanoid.Health > 0 then
                                 repeat task.wait()
                                     if v.Data.Level.Value < 20 or v.Data.Level.Value > mylevel + 210 or (GetDistance(v.Character.HumanoidRootPart.Position) <= 150 and game.Players.LocalPlayer.PlayerGui.Main.BottomHUDList.SafeZone.Visible == true) then
-                                        PlayerBlacklist = PlayerBlacklist + 1
+                                        table.insert(table_PlayerBlacklist, v.Name)
                                         game.ReplicatedStorage.Remotes.CommF_:InvokeServer("PlayerHunter")
                                     end
-                                    if PlayerBlacklist >= 3 then
+                                    if #PlayerBlacklist >= 6 then
                                         Notify("Experience Hub", "Not Found Players, Hop Server", 5)
                                         local tickold = tick()
                                         repeat wait()
@@ -644,7 +644,7 @@ spawn(function()
                                     end
                                     Notify("Experience Hub", "Killing: "..v.Name, 0.1)
                                 until CheckStatusFeature(getgenv().KillPlayerQuest) == "FALSE" or not v:FindFirstChild("HumanoidRootPart") or v.Character.Humanoid.Health <= 0
-                                PlayerBlacklist = PlayerBlacklist + 1
+                                table.insert(table_PlayerBlacklist, v.Name)
                             end
                         end
                     end)
@@ -654,6 +654,7 @@ spawn(function()
             else                
                 if game.ReplicatedStorage.Remotes.CommF_:InvokeServer("PlayerHunter") == "I don't have anything for you right now. Come back later." then
                     getgenv().KillPlayerQuest = false
+                    getgenv().Level = true
                 end
             end
         end
