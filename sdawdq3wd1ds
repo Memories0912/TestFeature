@@ -309,11 +309,13 @@ local function UIOpen()
                     if (TpCFrame.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 300 then
                         pcall(function()
                             ToTween(TpCFrame)
+                            NoClip()
                         end)
                     else
                         pcall(function()
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TpCFrame
                             ToTween(TpCFrame)
+                            NoClip()
                         end)
                     end
                 end)
@@ -332,8 +334,8 @@ local function UIOpen()
         if (QuestPoint[CheckDoubleQuest2().NameQuest].Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then
             game.ReplicatedStorage.Remotes["CommF_"]:InvokeServer("StartQuest", tostring(CheckDoubleQuest2().NameQuest), CheckDoubleQuest2().ID)
         else
-            QuestCFrame = QuestPoint[CheckDoubleQuest2().NameQuest]
-            ToTween(QuestCFrame)
+            ToTween(QuestPoint[CheckDoubleQuest2().NameQuest].CFrame)
+            NoClip()
         end
     end
     function GetQuestCustom(lvlcustom)
@@ -352,8 +354,8 @@ local function UIOpen()
             )
             wait(2.2)
         else
-            QuestCFrame = QuestPoint[CheckDoubleQuestCustom(lvlcustom).NameQuest]
-            ToTween(QuestCFrame)
+            ToTween(QuestPoint[CheckDoubleQuestCustom(lvlcustom).NameQuest].CFrame)
+            NoClip()
             wait(0.75)
         end
     end
@@ -797,6 +799,7 @@ local function UIOpen()
                                             until game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible
                                         end
                                         ToTween(v.CFrame * CFrame.new(0, 25, 8))
+                                        NoClip()
                                     end
                                 end)
                             end
