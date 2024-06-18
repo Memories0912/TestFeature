@@ -15,7 +15,7 @@ local Func_Settings = {
     ["Claim Quest Cake And Haunted"] = false
 }
 local Func_Items = {
-    ["Auto Saber"] = false
+    ["Auto Saber"] = false,
     ["Auto Cursed Dual Katana"] = false,
     ["Auto Yama"] = false,
     ["Auto Tushita Fully"] = false
