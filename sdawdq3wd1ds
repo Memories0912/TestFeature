@@ -329,14 +329,11 @@ local function UIOpen()
             CFrameQuest()
             return
         end
-        if
-            (QuestPoint[CheckDoubleQuest2().NameQuest].Position -
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8
-         then
-            CommF:InvokeServer("StartQuest", tostring(CheckDoubleQuest2().NameQuest), CheckDoubleQuest2().ID)
+        if (QuestPoint[CheckDoubleQuest2().NameQuest].Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then
+            game.ReplicatedStorage.Remotes["CommF_"]:InvokeServer("StartQuest", tostring(CheckDoubleQuest2().NameQuest), CheckDoubleQuest2().ID)
         else
             QuestCFrame = QuestPoint[CheckDoubleQuest2().NameQuest]
-            Tweento(QuestCFrame)
+            ToTween(QuestCFrame)
         end
     end
     function GetQuestCustom(lvlcustom)
@@ -347,12 +344,8 @@ local function UIOpen()
             CFrameQuest()
             return
         end
-        MMBStatus = "Claiming Quest"
-        if
-            (QuestPoint[CheckDoubleQuestCustom(lvlcustom).NameQuest].Position -
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8
-         then 
-            CommF:InvokeServer(
+        if (QuestPoint[CheckDoubleQuestCustom(lvlcustom).NameQuest].Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then 
+            game.ReplicatedStorage.Remotes["CommF_"]:InvokeServer(
                 "StartQuest",
                 tostring(CheckDoubleQuestCustom(lvlcustom).NameQuest),
                 CheckDoubleQuestCustom(lvlcustom).ID
@@ -360,7 +353,7 @@ local function UIOpen()
             wait(2.2)
         else
             QuestCFrame = QuestPoint[CheckDoubleQuestCustom(lvlcustom).NameQuest]
-            Tweento(QuestCFrame)
+            ToTween(QuestCFrame)
             wait(0.75)
         end
     end
@@ -383,7 +376,6 @@ local function UIOpen()
             return CheckNameDoubleQuest()
         end
     end
-    local CommF = game.ReplicatedStorage.Remotes["CommF_"]
     CFrameQuest()
     -- Function Attack
     function CheckNearestTeleporter(P)
@@ -602,22 +594,6 @@ local function UIOpen()
             end
         end
     end
-    spawn(function()
-        while task.wait() do
-            if game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-                NoClip()
-            elseif game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
-                if game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity") then
-                    game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity"):Destroy()
-                end
-                for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                    if v:IsA("BasePart") then
-                        v.CanCollide = true
-                    end
-                end
-            end
-        end
-    end)
     function CheckStatusFeature(feature)
         InputedFeature = feature
         if InputedFeature == true then
@@ -820,7 +796,7 @@ local function UIOpen()
                                             repeat wait()
                                             until game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible
                                         end
-                                        Tweento(v.CFrame * CFrame.new(0, 25, 8))
+                                        ToTween(v.CFrame * CFrame.new(0, 25, 8))
                                     end
                                 end)
                             end
