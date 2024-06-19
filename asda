@@ -12,6 +12,7 @@ local Func_Settings = {
     ["Bring Radius"] = 250,
     ["Auto Ken"] = false,
     ["Double Quest"] = false,
+    ["Tween Speed"] = 300,
     ["Claim Quest Cake And Haunted"] = false
 }
 local Func_Items = {
@@ -364,7 +365,7 @@ local function UIOpen()
     function ToTween(Pos, Speed)
         Distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Pos.Position).Magnitude
         if not Speed or typeof(Speed) ~= "number" then
-            Speed = Setting["Tween Speed"]
+            Speed = Func_Settings["Tween Speed"]
         end
         if Distance <= 220 then
             game.Players.LocalPlayer.Character.PrimaryPart.CFrame = Pos
@@ -638,6 +639,11 @@ local function UIOpen()
     DoubleQuest:OnChanged(function(v)
         Func_Settings["Double Quest"] = v
     end)
+    local TweenSpeed = B:AddSlider("Tween Speed", {Title = "Tween Speed", Description = "", Default = 300, Min = 1, Max = 400, Rounding = 1,
+        Callback = function(v)
+            Func_Settings["Tween Speed"] = v
+        end
+    })
     local fastattack = {["Delay"] = 0}
     spawn(function()
         while wait() do
